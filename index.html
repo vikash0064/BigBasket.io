@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>BigBasket Clone</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'big-shoulders': ['"Big Shoulders Text"', 'sans-serif'],
+                    },
+                    colors: {
+                        'bb-green': '#6d9822',
+                        'bb-dark': '#2c3e50',
+                        'bb-light': '#f8f8f8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-big-shoulders bg-bb-light">
+    <!-- Header -->
+    <header id="header" class="sticky top-0 bg-white shadow-md z-50 px-4 md:px-10 lg:px-20 xl:px-40">
+        <!-- Top Navbar -->
+        <div id="nav" class="flex flex-wrap items-center justify-between py-3 gap-4">
+            <!-- Logo -->
+            <div id="logo" class="w-32 h-10 md:w-40 md:h-12 flex-shrink-0">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/BigBasket_Logo.svg/800px-BigBasket_Logo.svg.png" alt="BigBasket Logo" class="w-full h-full object-contain">
+            </div>
+    
+            <!-- Search Bar -->
+            <div id="search" class="flex-1 w-full md:max-w-2xl flex items-center border border-gray-300 rounded-md px-4 py-2">
+                <i class="ri-search-line text-bb-green mr-2"></i>
+                <input type="text" placeholder="Search For Product..." class="w-full outline-none text-sm">
+            </div>
+    
+            <!-- Right Controls -->
+            <div class="flex items-center gap-2 flex-wrap justify-end w-full md:w-auto">
+                <!-- Location Button -->
+                <div id="location">
+                    <button class="flex items-center gap-1 bg-gray-100 px-3 py-1.5 rounded-md hover:bg-gray-200 transition text-sm">
+                        <i class="ri-compass-3-line text-base"></i>
+                        <span>Select Location</span>
+                    </button>
+                </div>
+    
+                <!-- Login Button -->
+                <div id="login">
+                    <button class="bg-black text-white px-4 py-1.5 rounded-md hover:bg-gray-800 transition text-sm">
+                        Login/Sign Up
+                    </button>
+                </div>
+    
+                <!-- Cart Button with Count -->
+                <div id="cart" class="relative">
+                    <button class="bg-red-100 p-2 rounded-md text-xl hover:bg-red-200 transition relative">
+                        <i class="ri-shopping-basket-line"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Secondary Navbar -->
+        <div id="nav2" class="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 py-3 border-t border-b border-gray-200 mt-2">
+            <!-- Category Dropdown -->
+            <button id="category" class="flex items-center gap-2 bg-bb-green text-white px-4 py-2 rounded-md text-sm">
+                <p>Shop by Category</p>
+                <i class="ri-arrow-down-s-fill"></i>
+            </button>
+    
+            <!-- Product Links -->
+            <div class="flex items-center gap-4 flex-wrap text-sm justify-center">
+                <a class="option1 text-gray-600 hover:text-bb-green hover:underline cursor-pointer">Fruit</a>
+                <a class="option1 text-gray-600 hover:text-bb-green hover:underline cursor-pointer">Ghee</a>
+                <a class="option1 text-gray-600 hover:text-bb-green hover:underline cursor-pointer">Tea</a>
+                <a class="option1 text-gray-600 hover:text-bb-green hover:underline cursor-pointer">Nandni</a>
+                <i class="ri-arrow-right-double-line text-gray-400"></i>
+            </div>
+    
+            <!-- Utility Buttons -->
+            <div class="flex items-center gap-2 text-sm">
+                <button id="sb" class="bg-gray-100 px-4 py-1 rounded-full hover:bg-bb-green hover:text-white transition">
+                    Smart Basket
+                </button>
+                <button id="offer" class="bg-gray-100 px-4 py-1 rounded-full hover:bg-bb-green hover:text-white transition">
+                    Offer
+                </button>
+            </div>
+        </div>
+    </header>
+    
+
+    <div id="main" class="max-w-7xl mx-auto px-4">
+        <!-- Quick Options -->
+        <div id="option" class="flex flex-wrap justify-between gap-2 my-6">
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">Egg,meat and fish</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">NEUPASS</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">Ayurvedic</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">Buy more save more</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">Deals of the week</button>
+            <button class="bg-gray-100 px-4 py-2 rounded-md hover:bg-bb-green hover:text-white transition flex-1 min-w-[150px] text-sm">Combo Store</button>
+        </div>
+
+        <!-- Smart Basket -->
+        <section id="smart-busket" class="bg-gray-50 rounded-lg p-6 mb-8">
+            <div id="head" class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">My Smart Basket</h1>
+                <a href="#" class="text-bb-green hover:underline">View All</a>
+            </div>
+            <div id="container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/10000025_32-fresho-banana-robusta.jpg" alt="Banana" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">fresho!</h1>
+                    <h2 class="text-lg font-medium mb-4">Banana - Robusta</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="50" class="kg">1kg</option>
+                            <option value="100" class="kg">2kg</option>
+                            <option value="150" class="kg">3kg</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹50</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Repeat similar structure for other products -->
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/10000067_26-fresho-capsicum-green.jpg" alt="Capsicum" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">fresho!</h1>
+                    <h2 class="text-lg font-medium mb-4">Capsicum - Green</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="40">250g</option>
+                            <option value="75">500g</option>
+                            <option value="140">1kg</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹40</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/10000333_15-fresho-chilli-green-long-medium.jpg" alt="Green Chilli" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">fresho!</h1>
+                    <h2 class="text-lg font-medium mb-4">Green Chilli - Long</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="25">100g</option>
+                            <option value="45">250g</option>
+                            <option value="80">500g</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹25</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/10000338_15-fresho-ginger.jpg" alt="Ginger" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">fresho!</h1>
+                    <h2 class="text-lg font-medium mb-4">Ginger</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="30">100g</option>
+                            <option value="55">250g</option>
+                            <option value="100">500g</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹30</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Sellers -->
+        <section id="best-seller" class="bg-gray-50 rounded-lg p-6 mb-8">
+            <div id="head" class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Best Sellers</h1>
+                <a href="#" class="text-bb-green hover:underline">View All</a>
+            </div>
+            <div id="container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/1226972_1-littles-baby-diaper-pants-xl-with-wetness-indicator-12-hours-absorption.jpg" alt="Diapers" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">Littles</h1>
+                    <h2 class="text-lg font-medium mb-4">Baby Diaper Pants</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="699">Pack of 32</option>
+                            <option value="1299">Pack of 64</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹699</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Repeat similar structure for other best sellers -->
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/40125231_4-bodyguard-premium-baby-wet-wipes-with-aloe-vera-paraben-free.jpg" alt="Baby Wipes" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">Bodyguard</h1>
+                    <h2 class="text-lg font-medium mb-4">Baby Wet Wipes</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="199">72 wipes</option>
+                            <option value="349">144 wipes</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹199</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/1201460_4-bigbasket-baby-wipes-cherry-blossom-no-paraben-double-moisturizing.jpg" alt="Baby Wipes" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">bigbasket</h1>
+                    <h2 class="text-lg font-medium mb-4">Baby Wipes - Cherry</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="99">72 wipes</option>
+                            <option value="179">144 wipes</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹99</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+                <div id="img1" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div id="pic" class="h-40 flex items-center justify-center mb-4">
+                        <img src="https://www.bigbasket.com/media/uploads/p/m/1201458_3-bigbasket-baby-wipes-sea-breeze-no-paraben-double-moisturizing.jpg" alt="Baby Wipes" class="h-full object-contain">
+                    </div>
+                    <h1 class="text-gray-500 text-sm">bigbasket</h1>
+                    <h2 class="text-lg font-medium mb-4">Baby Wipes - Sea</h2>
+                    <button id="but" class="flex justify-between w-full border border-gray-300 rounded-md px-3 py-2 mb-4 hover:border-bb-green transition">
+                        <select name="stateselect" id="selectKg" class="w-full outline-none cursor-pointer">
+                            <option value="99">72 wipes</option>
+                            <option value="179">144 wipes</option>
+                        </select>
+                        <h3 id="price" class="ml-2">₹99</h3>
+                    </button>
+                    <div id="save" class="flex gap-2">
+                        <button id="sav" class="flex-1 border border-gray-300 rounded-md p-2 hover:bg-gray-100 transition">
+                            <i class="ri-bookmark-line"></i>
+                        </button>
+                        <button id="add" class="flex-[3] border border-red-500 text-red-500 rounded-md p-2 hover:bg-red-500 hover:text-white transition">
+                            <p>ADD</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Sections -->
+        <section id="fruit-vege" class="mb-8">
+            <h1 class="text-2xl font-bold mb-6">Fruits and Vegetables</h1>
+            <div id="fruit1" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/41a0810e-1fc3-46e4-9d2c-7d9e79e0aa29/hp_f&v_m_fresh-vegetables_480_250923.jpg" alt="Fresh Vegetables" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/41a0810e-1fc3-46e4-9d2c-7d9e79e0aa29/hp_f&v_m_fresh-fruits_480_250923.jpg" alt="Fresh Fruits" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/41a0810e-1fc3-46e4-9d2c-7d9e79e0aa29/hp_f&v_m_cuts-&-exotics_480_250923.jpg" alt="Cuts & Exotics" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/41a0810e-1fc3-46e4-9d2c-7d9e79e0aa29/hp_f&v_m_herbs-&-seasoning_480_250923.jpg" alt="Herbs & Seasoning" class="w-full h-50 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section id="staple" class="mb-8">
+            <h1 class="text-2xl font-bold mb-6">Your Daily Staples</h1>
+            <div id="staple1" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_atta-flour-staplesStorefront_m_480_250323_01.jpg" alt="Atta & Flour" class="w-full h-32 object-cover">
+                </div>
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_rice-staplesStorefront_m_480_250323_02.jpg" alt="Rice" class="w-full h-32 object-cover">
+                </div>
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_dals-pulses-staplesStorefront_m_480_250323_03.jpg" alt="Dals & Pulses" class="w-full h-32 object-cover">
+                </div>
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_cooking-oils-staplesStorefront_m_480_250323_04.jpg" alt="Cooking Oils" class="w-full h-32 object-cover">
+                </div>
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_dry-fruits-staplesStorefront_m_480_250323_05.jpg" alt="Dry Fruits" class="w-full h-32 object-cover">
+                </div>
+                <div id="staple-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/0bb0a6da-8713-48fc-a40d-93cd63ca2025/hp_salt-staplesStorefront_m_480_250323_06.jpg" alt="Salt" class="w-full h-32 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section id="snack-store" class="mb-8">
+            <h1 class="text-2xl font-bold mb-6">Snack Store</h1>
+            <div id="fruit1" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/09ece9f7-7ac9-4d1e-afbb-f8ac572add38/hp_sbf_m_biscuits-&-namkeens_480_250923.jpg" alt="Biscuits & Namkeens" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/09ece9f7-7ac9-4d1e-afbb-f8ac572add38/hp_sbf_m_breakfast-cereals_480_250923.jpg" alt="Breakfast Cereals" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/09ece9f7-7ac9-4d1e-afbb-f8ac572add38/hp_sbf_m_pasta-sauces-&-more_480_270723.jpg" alt="Pasta & Sauces" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/09ece9f7-7ac9-4d1e-afbb-f8ac572add38/hp_sbf_m_sweet-cravings_480_250923.jpg" alt="Sweet Cravings" class="w-full h-50 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section id="snack-store" class="mb-8">
+            <h1 class="text-2xl font-bold mb-6">Cleaning & Household</h1>
+            <div id="fruit1" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/fefafda6-5ef7-4ed2-8fee-2574720666d7/hp_c&h_m_cleaners_480_250723.jpg" alt="Cleaners" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/fefafda6-5ef7-4ed2-8fee-2574720666d7/hp_c&h_m_detergents-&-fabric-care_480_250723.jpg" alt="Detergents" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/fefafda6-5ef7-4ed2-8fee-2574720666d7/hp_c&h_m_paper-disposables-&-garbage-bags_480_250723.jpg" alt="Disposables" class="w-full h-50 object-cover">
+                </div>
+                <div id="frut-img" class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/91e53046-98e0-4c5b-ae53-7d073e5210e1/fefafda6-5ef7-4ed2-8fee-2574720666d7/hp_c&h_m_freshner_480_250723.jpg" alt="Fresheners" class="w-full h-50 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <div id="slides">
+              <div class="slide">
+                <img src="https://www.bigbasket.com/media/uploads/banner_images/hp_bcd_m_bcd_250923_400.jpg?tr=w-1130,q-80" alt="Slide 1">
+              </div>
+              <div class="slide">
+                <img src="https://www.bigbasket.com/media/uploads/banner_images/hp_m_petstore_250923_400.jpg?tr=w-1130,q-80" alt="Slide 2">
+              </div>
+              <div class="slide">
+                <img src="https://www.bigbasket.com/media/uploads/banner_images/hp_m_health_suppliment_250923_400.jpg?tr=w-1130,q-80" alt="Slide 3">
+              </div>
+              <div class="slide">
+                <img src="https://www.bigbasket.com/media/uploads/banner_images/hp_m_babycare_250923_400.jpg?tr=w-1130,q-80" alt="Slide 4">
+              </div>
+            </div>
+          </div>
+        </div>  
+          <style>
+          .slideshow {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          }
+          
+          #slides {
+            display: flex;
+            width: 400%; /* 4 slides */
+            animation: slide 20s infinite;
+          }
+          
+          .slide {
+            width: 100vw;
+            flex-shrink: 0;
+          }
+          
+          .slide img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+          }
+          
+          @keyframes slide {
+            0%    { transform: translateX(0); }
+            20%   { transform: translateX(0); }
+            25%   { transform: translateX(-100vw); }
+            45%   { transform: translateX(-100vw); }
+            50%   { transform: translateX(-200vw); }
+            70%   { transform: translateX(-200vw); }
+            75%   { transform: translateX(-300vw); }
+            95%   { transform: translateX(-300vw); }
+            100%  { transform: translateX(0); }
+          }
+          </style>
+          
+
+    <!-- Full-width Footer -->
+    <footer class="bg-gray-900 text-white w-full mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3 class="text-lg font-bold mb-4">BigBasket</h3>
+                    <p class="text-gray-400 mb-4">BigBasket Pvt Ltd © 2025</p>
+                    <div class="social-icons flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cart</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Customer Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3 class="text-lg font-bold mb-4">Help</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <p class="text-gray-400">+91 1800 456 2526</p>
+                    <p class="text-gray-400">care@bigbasket.com</p>
+                    <p class="text-gray-400">Bangalore, India</p>
+                </div>
+            </div>
+            
+            <!-- Bottom Copyright -->
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 BigBasket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="toast" class="fixed bottom-5 right-5 bg-bb-green text-white px-4 py-2 rounded shadow-lg opacity-0 transition-opacity duration-300 z-50">
+        <p id="toast-message">Item added to basket!</p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
